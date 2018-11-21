@@ -1,8 +1,20 @@
-const myMap = function(func,array){
+const map = function(mapper,list){
   let result = [];
-  for(element of array){
-    result.push(func(element));
+  for(let element of list){
+    result.push(mapper(element));
   }
   return result;
 }
-exports.myMap = myMap;
+
+const filter = function(predicate,list){
+  let result = [];
+  for(let element of list){
+    if(predicate(element)){
+      result.push(element);
+    }
+  }
+  return result;
+}
+
+exports.map = map;
+exports.filter = filter;
