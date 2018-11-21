@@ -1,6 +1,6 @@
 const assert = require('assert');
 const lib = require('./array_functions.js');
-const { map,filter } = lib;
+const { map,filter,reduce} = lib;
 
 const decrement = function(num){
   return num-1;
@@ -15,7 +15,7 @@ const gretestNum = function(num1,num2){
 }
 
 describe('map', function(){
-  it('should return an emppty array', function(){
+  it('should return an empty array', function(){
     assert.deepEqual(map(decrement,[]),[]);
   });
 
@@ -41,5 +41,21 @@ describe('filter',function(){
     assert.deepEqual(filter(isOdd,[1,2]),[1]);
     assert.deepEqual(filter(isOdd,[1,2,-1]),[1,-1]);
     assert.deepEqual(filter(isOdd,[1,2,3,4,5,6]),[1,3,5]);
+  });
+});
+
+describe('reduce', function(){
+  it('should return the initial value', function(){
+    assert.equal(reduce(gretestNum,[],1),1);
+    assert.equal(reduce(gretestNum,[],5),5);
+  });
+
+  it('should return the initial value that is 0', function(){
+    assert.equal(reduce(gretestNum,[],0),0);
+  });
+
+  it('should return the gretest number from given list without initial value', function(){
+    assert.equal(reduce(gretestNum,[1,2,3]),3);
+    assert.equal(reduce(gretestNum,[-1,-2,-3]),-1);
   });
 });
